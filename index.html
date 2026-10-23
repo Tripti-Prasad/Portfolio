@@ -3,18 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tripti Prasad | Digital Experience & Web Publishing Specialist</title>
+    <title>Tripti Prasad | Digital Experience Portfolio</title>
     <style>
         :root {
-            --primary: #0F172A;
-            --secondary: #1E3A8A;
-            --accent: #EA580C;
-            --bg-light: #F8FAFC;
-            --text-dark: #1E293B;
-            --text-muted: #64748B;
-            --border: #E2E8F0;
+            --primary: #0A2540;
+            --secondary: #639fab;
+            --accent: #FF6B35;
+            --bg-light: #F4F6F9;
+            --card-bg: #FFFFFF;
+            --text-main: #333333;
+            --text-muted: #666666;
+            --border-radius: 12px;
+            --shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
         }
-        
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -24,422 +26,678 @@
 
         body {
             background-color: var(--bg-light);
-            color: var(--text-dark);
+            color: var(--text-main);
             line-height: 1.6;
         }
 
-        header {
-            background: #fff;
-            border-bottom: 1px solid var(--border);
+        /* Navbar Styling */
+        nav {
+            background: var(--card-bg);
+            padding: 1.2rem 2rem;
             position: sticky;
             top: 0;
-            z-index: 100;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 2rem;
         }
 
-        .logo {
+        .logo-area {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            font-weight: 700;
+            gap: 12px;
+            text-decoration: none;
             color: var(--primary);
-            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
         }
 
-        .logo-icon {
-            background: var(--secondary);
+        .logo-badge {
+            background: var(--primary);
             color: white;
-            padding: 0.5rem 0.75rem;
-            border-radius: 6px;
-            font-size: 0.9rem;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-weight: 800;
         }
 
-        nav ul {
+        .nav-links {
             display: flex;
-            list-style: none;
-            gap: 1.5rem;
+            gap: 20px;
         }
 
-        nav a {
-            text-decoration: none;
-            color: var(--text-muted);
+        .nav-links button {
+            background: none;
+            border: none;
+            font-size: 1rem;
             font-weight: 500;
-            transition: color 0.2s;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 6px 12px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
         }
 
-        nav a:hover, nav a.active {
-            color: var(--secondary);
+        .nav-links button:hover, .nav-links button.active {
+            color: var(--primary);
+            background: #E8ECEF;
+            font-weight: 600;
         }
 
-        .hero-banner {
-            width: 100%;
-            max-height: 400px;
-            object-fit: cover;
+        /* Main Container and Page Layouts */
+        .container {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .page-section {
+            display: none;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        .page-section.active {
             display: block;
         }
 
-        main {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 2rem;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .hero-section {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 4rem;
+        /* Banner styling */
+        .banner-container {
+            width: 100%;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            background: #DCE5EE;
+            display: flex;
             align-items: center;
-            margin-bottom: 4rem;
-            padding: 2rem 0;
+            justify-content: center;
+        }
+
+        .banner-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* Hero Page Section */
+        .hero-block {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 2.5rem;
+            align-items: center;
+            background: var(--card-bg);
+            padding: 3rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
         }
 
         .hero-text h1 {
-            font-size: 3rem;
             color: var(--primary);
+            font-size: 2.8rem;
             margin-bottom: 0.5rem;
+            line-height: 1.2;
         }
 
-        .hero-text h2 {
-            font-size: 1.25rem;
-            color: var(--text-muted);
-            font-weight: 400;
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            font-weight: 600;
             margin-bottom: 1.5rem;
         }
 
-        .hero-text p {
+        .hero-desc {
+            color: var(--text-muted);
             font-size: 1.1rem;
             margin-bottom: 2rem;
-            color: #475569;
         }
 
-        .btn {
-            display: inline-block;
-            background: var(--secondary);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: background 0.2s;
-        }
-
-        .btn:hover {
-            background: #172554;
-        }
-
-        .profile-img {
+        .hero-image img {
             width: 100%;
-            border-radius: 12px;
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            object-fit: cover;
         }
 
-        .section-title {
-            font-size: 2rem;
+        .cta-btn {
+            background: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cta-btn:hover {
+            background: #051627;
+        }
+
+        /* Detailed Pages Cards */
+        .content-card {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
             margin-bottom: 2rem;
-            position: relative;
+        }
+
+        h2.section-title {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid var(--bg-light);
             padding-bottom: 0.5rem;
         }
 
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: var(--accent);
-        }
-
-        .grid-2 {
+        /* Experience Grid Layout */
+        .experience-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-bottom: 4rem;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 1.5rem;
         }
 
-        .card {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
+        .exp-item {
+            background: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
         }
 
-        .experience-item {
-            margin-bottom: 1.5rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid var(--border);
+        .exp-item h3 {
+            color: var(--primary);
+            margin-bottom: 0.3rem;
         }
 
-        .experience-item:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-
-        .experience-item h3 {
-            color: var(--secondary);
-            margin-bottom: 0.25rem;
-        }
-
-        .skills-tag-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-        }
-
-        .tag {
-            background: #EFF6FF;
-            color: var(--secondary);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
+        .exp-meta {
             font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+
+        /* Skills Layout */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skills-category {
+            background: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+
+        .skills-category h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            border-bottom: 2px solid #E1E6EB;
+            padding-bottom: 0.3rem;
+        }
+
+        .skills-category ul {
+            list-style: none;
+        }
+
+        .skills-category li {
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .skills-category li::before {
+            content: "•";
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* Contact Section Side-by-Side Card Layout */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .contact-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+        }
+
+        .contact-info-list {
+            margin-top: 1.5rem;
+        }
+
+        .contact-info-item {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1.2rem;
+        }
+
+        .contact-info-item span.label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            margin-bottom: 0.2rem;
+        }
+
+        .contact-info-item a, .contact-info-item span.value {
+            font-size: 1.05rem;
+            color: var(--primary);
+            text-decoration: none;
             font-weight: 500;
         }
 
-        .contact-container {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 3rem;
-            margin-top: 2rem;
+        .contact-info-item a:hover {
+            color: var(--accent);
         }
 
-        .contact-info a {
-            display: block;
-            color: var(--secondary);
-            text-decoration: none;
-            margin-bottom: 0.5rem;
-        }
-
+        /* Form styling matching image layout */
         .form-group {
-            margin-bottom: 1.25rem;
+            margin-bottom: 1.2rem;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            font-size: 0.95rem;
+            margin-bottom: 0.4rem;
+            font-size: 0.9rem;
+            color: var(--text-main);
         }
 
         .form-control {
             width: 100%;
-            padding: 0.75rem;
-            border: 1px solid var(--border);
-            border-radius: 6px;
+            padding: 12px;
+            border: 1px solid #D1D9E0;
+            border-radius: 8px;
             font-size: 1rem;
-            background: var(--bg-light);
+            background-color: transparent;
+            transition: border-color 0.2s;
         }
 
         .form-control:focus {
             outline: none;
-            border-color: var(--secondary);
-            background: white;
+            border-color: var(--primary);
         }
 
         textarea.form-control {
+            height: 120px;
             resize: vertical;
-            min-height: 120px;
+        }
+
+        .form-note {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
         }
 
         .submit-btn {
-            background: var(--secondary);
+            background: var(--primary);
             color: white;
+            padding: 12px 24px;
             border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 6px;
+            border-radius: 8px;
             font-size: 1rem;
-            font-weight: 500;
+            font-weight: 600;
             cursor: pointer;
-            width: 100%;
+            width: auto;
             transition: background 0.2s;
         }
 
         .submit-btn:hover {
-            background: #172554;
+            background: #051627;
         }
 
-        #form-result {
+        #form-status {
             margin-top: 1rem;
-            font-weight: 500;
-            text-align: center;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            display: none;
         }
 
+        /* Footer styling */
         footer {
-            background: var(--primary);
-            color: white;
             text-align: center;
-            padding: 2rem;
-            margin-top: 4rem;
+            padding: 3rem 1rem;
+            color: var(--text-muted);
             font-size: 0.9rem;
+            border-top: 1px solid #E1E6EB;
+            margin-top: 4rem;
         }
 
+        /* Responsive Layout fixes */
         @media (max-width: 768px) {
-            .hero-section, .grid-2, .contact-container {
-                grid-template-columns: 1fr;
-            }
-            .nav-container {
+            nav {
                 flex-direction: column;
                 gap: 1rem;
             }
-            .hero-text h1 {
-                font-size: 2.25rem;
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .hero-block {
+                grid-template-columns: 1fr;
+                padding: 1.5rem;
+                text-align: center;
+            }
+            .hero-image {
+                order: -1;
+                max-width: 240px;
+                margin: 0 auto;
+            }
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            .experience-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="nav-container">
-            <a href="#" class="logo">
-                <span class="logo-icon">TP</span> Tripti Prasad
-            </a>
-            <nav>
-                <ul>
-                    <li><a href="#home" class="active">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#experience">Experience</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+    <!-- Shared Responsive Dynamic Navbar Header -->
+    <nav>
+        <a href="#" class="logo-area" onclick="navigateTo('home')">
+            <span class="logo-badge">TP</span>
+            <span>Tripti Prasad</span>
+        </a>
+        <div class="nav-links">
+            <button id="nav-home" class="active" onclick="navigateTo('home')">Home</button>
+            <button id="nav-about" onclick="navigateTo('about')">About</button>
+            <button id="nav-experience" onclick="navigateTo('experience')">Experience</button>
+            <button id="nav-skills" onclick="navigateTo('skills')">Skills</button>
+            <button id="nav-education" onclick="navigateTo('education')">Certifications & Education</button>
+            <button id="nav-contact" onclick="navigateTo('contact')">Contact</button>
         </div>
-    </header>
+    </nav>
 
-    <img src="Modern%20AEM%20Digital%20Experience%20Banner.png" alt="Tripti Prasad digital experience banner in blue, white, and warm orange" class="hero-banner">
-
-    <main>
-        <!-- Home / About Intro -->
-        <section id="home" class="hero-section">
-            <div class="hero-text">
-                <h2>Digital experience • Web publishing</h2>
-                <h1>Tripti Prasad</h1>
-                <h2>Digital Experience & Web Publishing Specialist | AEM & CMS Operations</h2>
-                <p>Digital Experience Professional with 6 years of experience managing enterprise websites using Adobe Experience Manager (AEM). Skilled in web publishing, content governance, campaign execution, content lifecycle management, and collaborating with global stakeholders to deliver high-quality digital experiences.</p>
-                <a href="#contact" class="btn">Contact me</a>
-            </div>
-            <div>
-                <img src="DP.jpeg" alt="Portrait of Tripti Prasad wearing glasses and a dark blazer" class="profile-img">
-            </div>
-        </section>
-
-        <!-- Detailed About & Skills Grid -->
-        <div class="grid-2">
-            <section id="about" class="card">
-                <h2 class="section-title">About Me</h2>
-                <p>Proven track record combining technical acumen with business insight to improve website performance, user experience, and content operations for global clients including Unilever, Tetra Pak, ETS, and Dentsply Sirona.</p>
-            </section>
-
-            <section id="skills" class="card">
-                <h2 class="section-title">Skills & Competencies</h2>
-                <div class="skills-tag-container">
-                    <span class="tag">Adobe Experience Manager (AEM)</span>
-                    <span class="tag">Content Publishing & Authoring</span>
-                    <span class="tag">Content Governance</span>
-                    <span class="tag">Campaign Execution</span>
-                    <span class="tag">Workflow Automation</span>
-                    <span class="tag">User Acceptance Testing (UAT)</span>
-                    <span class="tag">Agile & Scrum</span>
-                    <span class="tag">Jira & Confluence</span>
-                </div>
-            </section>
+    <div class="container">
+        <!-- Visual Brand Identity Banner Header Asset -->
+        <div class="banner-container">
+            <img src="Modern%20AEM%20Digital%20Experience%20Banner.png" alt="Tripti Prasad digital experience banner in blue, white, and warm orange">
         </div>
 
-        <!-- Experience Section -->
-        <section id="experience" class="card" style="margin-bottom: 4rem;">
-            <h2 class="section-title">Professional Experience</h2>
-            <div class="experience-item">
-                <h3>Capgemini | Consultant (2020 – Present)</h3>
-                <p><strong>Unilever:</strong> Lead AEM-based content authoring and brand campaign execution across global digital platforms, ensuring seamless delivery of high-impact marketing experiences.</p>
-            </div>
-            <div class="experience-item">
-                <h3>Tetra Pak</h3>
-                <p>Supported AEM development and implementation for digital platforms, collaborating with cross-functional development and content teams to deliver scalable CMS solutions.</p>
-            </div>
-            <div class="experience-item">
-                <h3>ETS & Dentsply Sirona</h3>
-                <p>Analyzed business processes, executed CMS workflows, and optimized digital products to establish core enterprise web publishing standards.</p>
-            </div>
-        </section>
-
-        <!-- Contact Section with Web3Forms integration -->
-        <section id="contact" class="card">
-            <h2 class="section-title">Contact</h2>
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h3>Contact details</h3>
-                    <p style="margin: 1rem 0 color: var(--text-muted);">Noida, India</p>
-                    <a href="mailto:tripti99prasad@gmail.com">tripti99prasad@gmail.com</a>
-                    <a href="tel:+919336651251">+91 9336651251</a>
-                    <a href="https://linkedin.com/in/tripti-prasad-aem" target="_blank">linkedin.com/in/tripti-prasad-aem</a>
-                </div>
-                
-                <div>
-                    <h3>Leave your details</h3>
-                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
-                        Fill out the form below to send an immediate detailed email notification directly to Tripti.
+        <!-- 1. HOME VIEW SECTION -->
+        <section id="page-home" class="page-section active">
+            <div class="hero-block">
+                <div class="hero-text">
+                    <p class="hero-subtitle">Digital experience • Web publishing</p>
+                    <h1>Tripti Prasad</h1>
+                    <div style="font-weight: 500; font-size: 1.15rem; color: #4A5568; margin-bottom: 1rem;">
+                        Digital Experience & Web Publishing Specialist | AEM & CMS Operations
+                    </div>
+                    <p class="hero-desc">
+                        Digital Experience Professional with 6 years of experience managing enterprise websites using Adobe Experience Manager (AEM). Skilled in web publishing, content governance, campaign execution, content lifecycle management, and collaborating with global stakeholders to deliver high-quality digital experiences.
                     </p>
-                    
-                    <!-- Web3Forms Configured Form -->
+                    <button class="cta-btn" onclick="navigateTo('about')">About me →</button>
+                </div>
+                <div class="hero-image">
+                    <img src="DP.jpeg" alt="Portrait of Tripti Prasad wearing glasses and a dark blazer">
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. ABOUT VIEW SECTION -->
+        <section id="page-about" class="page-section">
+            <div class="content-card">
+                <h2 class="section-title">About Me</h2>
+                <p style="font-size: 1.1rem; color: var(--text-main); margin-bottom: 1.5rem; text-align: justify;">
+                    Digital Experience Professional with 6 years of experience managing enterprise websites using Adobe Experience Manager (AEM). Skilled in web publishing, content governance, campaign execution, content lifecycle management, and collaborating with global stakeholders to deliver high-quality digital experiences. Proven track record combining technical acumen with business insight to improve website performance, user experience, and content operations for global clients including Unilever, Tetra Pak, ETS, and Dentsply Sirona.
+                </p>
+            </div>
+        </section>
+
+        <!-- 3. EXPERIENCE VIEW SECTION -->
+        <section id="page-experience" class="page-section">
+            <div class="content-card">
+                <h2 class="section-title">Professional Experience</h2>
+                <div style="font-weight: 600; color: var(--primary); font-size: 1.2rem; margin-bottom: 1.5rem;">
+                    Capgemini | Consultant (2020 – Present)
+                </div>
+                <div class="experience-grid">
+                    <div class="exp-item">
+                        <h3>Unilever</h3>
+                        <p class="exp-meta">Core Enterprise Brand Management</p>
+                        <p>Lead AEM-based content authoring and brand campaign execution across global digital platforms, ensuring seamless delivery of high-impact marketing experiences.</p>
+                    </div>
+                    <div class="exp-item">
+                        <h3>Tetra Pak</h3>
+                        <p class="exp-meta">CMS Development & Scaling</p>
+                        <p>Supported AEM development and implementation for digital platforms, collaborating with cross-functional development and content teams to deliver scalable CMS solutions.</p>
+                    </div>
+                    <div class="exp-item">
+                        <h3>ETS</h3>
+                        <p class="exp-meta">Business Operations & Optimizations</p>
+                        <p>Analyzed business processes and user requirements to support the development, enhancement, and optimization of digital products and platforms.</p>
+                    </div>
+                    <div class="exp-item">
+                        <h3>Dentsply Sirona</h3>
+                        <p class="exp-meta">Content Delivery Architectures</p>
+                        <p>Executed CMS authoring, content workflows, and digital platform operations in Adobe Experience Manager (AEM) to establish core web publishing standards.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. SKILLS VIEW SECTION -->
+        <section id="page-skills" class="page-section">
+            <div class="content-card">
+                <h2 class="section-title">Core Competencies & Skills</h2>
+                <div class="skills-grid">
+                    <div class="skills-category">
+                        <h3>CMS & Platforms</h3>
+                        <ul>
+                            <li>Adobe Experience Manager (AEM Sites)</li>
+                            <li>AEM Assets / DAM</li>
+                            <li>Enterprise Content Management Systems</li>
+                        </ul>
+                    </div>
+                    <div class="skills-category">
+                        <h3>Content Operations</h3>
+                        <ul>
+                            <li>AEM Authoring & Web Publishing</li>
+                            <li>Content Governance Protocols</li>
+                            <li>Content Lifecycle Architecture</li>
+                            <li>Global Campaign Execution</li>
+                            <li>Workflow Automation Modules</li>
+                        </ul>
+                    </div>
+                    <div class="skills-category">
+                        <h3>Business Analysis</h3>
+                        <ul>
+                            <li>Requirement Gathering & Synthesis</li>
+                            <li>Business Process Infrastructure Analysis</li>
+                            <li>User Acceptance Testing (UAT)</li>
+                            <li>QA Coordination Lifecycles</li>
+                            <li>Agile & Scrum Frameworks</li>
+                        </ul>
+                    </div>
+                    <div class="skills-category">
+                        <h3>Tools & Scripting</h3>
+                        <ul>
+                            <li>Jira & Confluence Suites</li>
+                            <li>SharePoint Data Storage</li>
+                            <li>Google Analytics Modules</li>
+                            <li>Qualifio & Viva Engage</li>
+                            <li>Basic Structural HTML & CSS</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. EDUCATION & CERTIFICATIONS VIEW SECTION -->
+        <section id="page-education" class="page-section">
+            <div class="content-card">
+                <h2 class="section-title">Certifications</h2>
+                <ul style="list-style-type: none; margin-bottom: 2.5rem;">
+                    <li style="margin-bottom: 0.8rem; display: flex; align-items: flex-start; gap: 10px;">
+                        <span style="color: var(--accent); font-weight: bold;">✔</span>
+                        <div><strong>Manage and Deliver Digital Assets Using Adobe Experience Manager</strong> – Adobe Experience League</div>
+                    </li>
+                    <li style="margin-bottom: 0.8rem; display: flex; align-items: flex-start; gap: 10px;">
+                        <span style="color: var(--accent); font-weight: bold;">✔</span>
+                        <div><strong>Author Edge Delivery Services Websites with Document Authoring</strong> – Adobe Experience League</div>
+                    </li>
+                    <li style="margin-bottom: 0.8rem; display: flex; align-items: flex-start; gap: 10px;">
+                        <span style="color: var(--accent); font-weight: bold;">✔</span>
+                        <div><strong>Author and Manage Pages Using Sites</strong> – Adobe Experience League</div>
+                    </li>
+                    <li style="margin-bottom: 0.8rem; display: flex; align-items: flex-start; gap: 10px;">
+                        <span style="color: var(--accent); font-weight: bold;">✔</span>
+                        <div><strong>Fundamentals of Agile Project Management</strong> – Project Management Institute (PMI)</div>
+                    </li>
+                    <li style="margin-bottom: 0.8rem; display: flex; align-items: flex-start; gap: 10px;">
+                        <span style="color: var(--accent); font-weight: bold;">✔</span>
+                        <div><strong>Fundamentals of Predictive Project Management</strong> – Project Management Institute (PMI)</div>
+                    </li>
+                    <li style="margin-bottom: 0.8rem; display: flex; align-items: flex-start; gap: 10px;">
+                        <span style="color: var(--accent); font-weight: bold;">✔</span>
+                        <div><strong>Atlassian Credentialed in JSM Fundamentals with AI</strong> – Atlassian</div>
+                    </li>
+                </ul>
+
+                <h2 class="section-title">Education</h2>
+                <div style="margin-bottom: 1.5rem;">
+                    <h3 style="color: var(--primary); font-size: 1.15rem;">Master of Business Administration (MBA) in Digital Marketing</h3>
+                    <p style="color: var(--text-muted); font-weight: 500;">Amity University Online | Graduating 2025</p>
+                </div>
+                <div>
+                    <h3 style="color: var(--primary); font-size: 1.15rem;">Bachelor of Technology (B.Tech) in Computer Science & Engineering</h3>
+                    <p style="color: var(--text-muted); font-weight: 500;">Amity University | Concluded 2020</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. CONTACT VIEW SECTION (Symmetric Card-Like Layout) -->
+        <section id="page-contact" class="page-section">
+            <div class="contact-container">
+                
+                <!-- Left Details Side Card Block Element -->
+                <div class="contact-card">
+                    <h2 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.8rem;">Contact details</h2>
+                    <div class="contact-info-list">
+                        <div class="contact-info-item">
+                            <span class="label">Location</span>
+                            <span class="value">Noida, India</span>
+                        </div>
+                        <div class="contact-info-item">
+                            <span class="label">Email Address</span>
+                            <a href="mailto:tripti99prasad@gmail.com">tripti99prasad@gmail.com</a>
+                        </div>
+                        <div class="contact-info-item">
+                            <span class="label">Phone Contact</span>
+                            <a href="tel:+919336651251">+91 9336651251</a>
+                        </div>
+                        <div class="contact-info-item">
+                            <span class="label">Professional Profile</span>
+                            <a href="https://linkedin.com/in/tripti-prasad-aem" target="_blank">linkedin.com/in/tripti-prasad-aem</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Live Automated Form Card Block Element Linked to Web3Forms -->
+                <div class="contact-card">
+                    <h2 style="color: var(--primary); margin-bottom: 0.8rem; font-size: 1.8rem;">Leave your details</h2>
+                    <p class="form-note">
+                        This form routes your details directly to Tripti via secure channels. It sends a detailed alert notification directly to her email inbox.
+                    </p>
+
                     <form id="portfolio-form" action="https://api.web3forms.com/submit" method="POST">
-                        <!-- MANDATORY: Replace the value below with your Web3Forms Access Key -->
+                        <!-- CRITICAL INPUT TOKEN: Put your custom Web3Forms token generated inside value -->
                         <input type="hidden" name="access_key" value="60f5ae3b-b05f-41cb-bd94-b3701a95ac9d">
                         
-                        <!-- Optional Customizations for Form Notifications -->
-                        <input type="hidden" name="subject" value="New Portfolio Contact Submission">
-                        <input type="hidden" name="from_name" value="Portfolio Website Builder">
-                        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
-
                         <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="Visitor Name" class="form-control" required placeholder="Your full name">
+                            <label for="form-name">Name</label>
+                            <input type="text" id="form-name" name="Visitor Name" class="form-control" required placeholder="Your Name">
                         </div>
 
                         <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="Visitor Email" class="form-control" required placeholder="your.email@example.com">
+                            <label for="form-email">Email</label>
+                            <input type="email" id="form-email" name="Visitor Email" class="form-control" required placeholder="Your Email Address">
                         </div>
 
                         <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="Visitor Message" class="form-control" required placeholder="Type your message here..."></textarea>
+                            <label for="form-message">Message</label>
+                            <textarea id="form-message" name="Visitor Message" class="form-control" required placeholder="Write your message here..."></textarea>
                         </div>
 
                         <button type="submit" class="submit-btn">Save details</button>
-                        
-                        <div id="form-result"></div>
                     </form>
+                    <div id="form-status"></div>
                 </div>
+
             </div>
         </section>
-    </main>
+    </div>
 
     <footer>
         <p>Tripti Prasad · Digital Experience & Web Publishing Specialist · Noida, India</p>
     </footer>
 
-    <!-- JavaScript to handle Web3Forms AJAX submission without leaving the page -->
+    <!-- Multipage View Controller Router and Form Transmitters -->
     <script>
+        // Tab Page Switching Engine
+        function navigateTo(pageId) {
+            // Hide all sub-sections
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(sec => sec.classList.remove('active'));
+
+            // Deactivate all navigation items
+            const navButtons = document.querySelectorAll('.nav-links button');
+            navButtons.forEach(btn => btn.classList.remove('active'));
+
+            // Show and light up current targeting viewport target elements
+            const targets = document.getElementById('page-' + pageId);
+            if(targets) {
+                targets.classList.add('active');
+            }
+
+            const activeBtn = document.getElementById('nav-' + pageId);
+            if(activeBtn) {
+                activeBtn.classList.add('active');
+            }
+
+            // Scroll window to top of viewport content frame seamlessly
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Silent AJAX Background Controller for Processing Client Web3Forms Form Actions
         const form = document.getElementById('portfolio-form');
-        const result = document.getElementById('form-result');
+        const statusBox = document.getElementById('form-status');
 
         form.addEventListener('submit', function(e) {
             e.preventDefault();
+            
+            // Show sending processing state
+            statusBox.style.display = 'block';
+            statusBox.style.backgroundColor = '#E2E8F0';
+            statusBox.style.color = '#4A5568';
+            statusBox.innerText = 'Sending details...';
+
             const formData = new FormData(form);
             const object = Object.fromEntries(formData);
             const json = JSON.stringify(object);
-            
-            result.style.color = "var(--text-muted)";
-            result.innerHTML = "Sending details...";
 
             fetch('https://api.web3forms.com/submit', {
                 method: 'POST',
@@ -452,19 +710,26 @@
             .then(async (response) => {
                 let res = await response.json();
                 if (response.status == 200) {
-                    result.style.color = "green";
-                    result.innerHTML = "Details saved successfully! Email sent.";
+                    statusBox.style.backgroundColor = '#DEF7EC';
+                    statusBox.style.color = '#03543F';
+                    statusBox.innerText = 'Details saved successfully! Automated email notification triggered.';
                     form.reset();
                 } else {
-                    console.log(response);
-                    result.style.color = "red";
-                    result.innerHTML = res.message || "Something went wrong. Please try again.";
+                    statusBox.style.backgroundColor = '#FDE8E8';
+                    statusBox.style.color = '#9B1C1C';
+                    statusBox.innerText = res.message || 'Transmission error. Please check your setup parameters.';
                 }
             })
             .catch(error => {
-                console.log(error);
-                result.style.color = "red";
-                result.innerHTML = "Network error. Please try again later.";
+                statusBox.style.backgroundColor = '#FDE8E8';
+                statusBox.style.color = '#9B1C1C';
+                statusBox.innerText = 'Network error occurred. Submission could not complete.';
+            })
+            .then(function() {
+                // Fade out state status window automatically after 5 elapsed seconds
+                setTimeout(() => {
+                    statusBox.style.display = 'none';
+                }, 5000);
             });
         });
     </script>
